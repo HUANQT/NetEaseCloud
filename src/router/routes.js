@@ -1,2 +1,9 @@
 import Home from "../views/Home.vue";
-export default [{ path: "/", component: Home }];
+import Mine from "../views/mine.vue";
+import Star from "../views/star.vue";
+
+export default [
+  { path: "/", component: Home },
+  { path: "/Mine", component: Mine },
+  { path: "/Star", component: Star },
+];

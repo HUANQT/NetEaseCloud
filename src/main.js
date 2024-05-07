@@ -8,5 +8,16 @@ import "vant/lib/index.css";
 import "./style.css";
 import App from "./App.vue";
 import router from "./router";
+import { Icon } from "@iconify/vue";
+import Button from "./components/button.vue";
+import Input from "./components/Input.vue";
 
-createApp(App).use(router).use(Swipe).use(SwipeItem).use(Image).mount("#app");
+import Antd from "ant-design-vue";
+// import "ant-design-vue/dist/antd.css";
+
+const app = createApp(App);
+app.component("Icon", Icon);
+app.component("Button", Button);
+app.component("Input", Input);
+
+app.use(Antd).use(router).use(Swipe).use(SwipeItem).use(Image).mount("#app");
