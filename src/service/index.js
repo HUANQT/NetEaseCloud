@@ -20,3 +20,17 @@ export const getAlbumList = (limit) =>
 
 export const getHotTopic = (limit) =>
   request.get("/hot/topic", { params: { limit } });
+
+// 搜索
+export const getCloudsearch = (params) =>
+  request.get("/cloudsearch", { params });
+// 热搜列表(简略)
+export const getSearchHot = () => request.get("/search/hot");
+// 排行
+export const getToplist = () => request.get("/toplist/detail");
+// 歌单详情
+export const getPlaylistDetail = (params) =>
+  request.get("/playlist/detail", { params });
+
+// mv
+export const getMvAll = (params) => request.get("/top/mv", { params });

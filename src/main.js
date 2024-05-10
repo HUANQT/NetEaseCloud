@@ -2,7 +2,8 @@
 // vue3 api模块化 兼容所有vue2的语法
 import { createApp } from "vue";
 
-import { Swipe, SwipeItem, Image } from "vant";
+import { Field, Tab, Tabs, Swipe, SwipeItem, Image } from "vant";
+
 import "vant/lib/index.css";
 
 import "./style.css";
@@ -20,4 +21,13 @@ app.component("Icon", Icon);
 app.component("Button", Button);
 app.component("Input", Input);
 
-app.use(Antd).use(router).use(Swipe).use(SwipeItem).use(Image).mount("#app");
+app
+  .use(Field)
+  .use(Tab)
+  .use(Tabs)
+  .use(Antd)
+  .use(router)
+  .use(Swipe)
+  .use(SwipeItem)
+  .use(Image)
+  .mount("#app");

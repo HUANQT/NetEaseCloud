@@ -1,5 +1,10 @@
 <template>
-  <router-view />
+  <Suspense>
+    <router-view />
+    <template #fallback>
+      <span>123</span>
+    </template>
+  </Suspense>
   <!-- 底部导航 -->
   <div class="fixed bottom-0">
     <div class="w-[100vw] h-[5vh] bg-white flex justify-around">
@@ -12,7 +17,10 @@
         </router-link>
       </div>
       <div class="mt-[2vw]">
-        <router-link to="/">
+        <router-link
+          to="/community"
+          :class="{ 'text-red-500': $route.path === '/community' }"
+        >
           <div class="flex flex-col items-center">
             <Icon icon="icon-park-outline:ranking-list" />
             <span> 排行榜 </span>
