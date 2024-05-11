@@ -34,3 +34,10 @@ export const getPlaylistDetail = (params) =>
 
 // mv
 export const getMvAll = (params) => request.get("/top/mv", { params });
+// mv视屏
+export const getMvUrl = (params) => request.get("/mv/url", { params });
+// mv个人数据
+export const getDetail = (params) => request.get("mv/detail", { params });
+// mv点赞数据
+export const getDetailInfo = (params) =>
+  request.get("mv/detail/info", { params });

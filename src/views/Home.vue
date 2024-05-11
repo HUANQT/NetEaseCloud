@@ -11,7 +11,7 @@
       </div>
       <!-- 侧边栏 -->
       <a-drawer
-        v-model:visible="visible"
+        :visible="visible"
         style="width: 85vw; background-color: #f1f1f1"
         placement="left"
         :closable="false"
@@ -529,15 +529,14 @@
         :option="{ scrollY: false, scrollX: true }"
         :dep="Personalized"
       >
-        <div class="flex justify-between w-[200vw]">
-          <div
-            class="flex flex-col items-center mx-[2vw]"
-            v-for="item in Personalized"
-            :key="item.id"
-          >
-            <img :src="item.picUrl" class="h-[30vw] rounded-[2vw]" />
-            <span class="text-[3vw]"> {{ item.name }} </span>
-          </div>
+        <div
+          class="w-[34vw] mx-[3vw] z-10"
+          v-for="item in Personalized"
+          :key="item.id"
+          @click="PersonalizedId(item.id)"
+        >
+          <img :src="item.picUrl" class="rounded-[2vw]" />
+          <div class="text-[3vw]">{{ item.name }}</div>
         </div>
       </BetterScroll>
     </div>
@@ -608,13 +607,65 @@
       <!-- 内容 -->
       <div></div>
     </div>
+    <!-- 底部导航 -->
+    <div class="fixed bottom-0">
+      <div class="w-[100vw] h-[5vh] bg-white flex justify-around">
+        <div class="mt-[2vw]">
+          <router-link to="/" :class="{ 'text-red-500': $route.path === '/' }">
+            <div class="flex flex-col items-center">
+              <Icon icon="ri:netease-cloud-music-fill" />
+              <span> 首页 </span>
+            </div>
+          </router-link>
+        </div>
+        <div class="mt-[2vw]">
+          <router-link
+            to="/community"
+            :class="{ 'text-red-500': $route.path === '/community' }"
+          >
+            <div class="flex flex-col items-center">
+              <Icon icon="icon-park-outline:ranking-list" />
+              <span> 排行榜 </span>
+            </div>
+          </router-link>
+        </div>
+        <div class="mt-[2vw]">
+          <router-link
+            to="/myUser"
+            :class="{ 'text-red-500': $route.path === '/myUser' }"
+          >
+            <div class="flex flex-col items-center">
+              <Icon icon="ph:user-light" />
+              <span> 我的 </span>
+            </div>
+          </router-link>
+        </div>
+        <div class="mt-[2vw]">
+          <router-link to="/">
+            <div class="flex flex-col items-center">
+              <Icon icon="gridicons:reader-following-conversation" />
+              <span> 关注 </span>
+            </div>
+          </router-link>
+        </div>
+        <div class="mt-[2vw]">
+          <router-link to="/">
+            <div class="flex flex-col items-center">
+              <Icon icon="iconoir:community" />
+              <span> 社区 </span>
+            </div>
+          </router-link>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
-<script lang="ts">
+<script setup lang="ts">
 import BetterScroll from "../components/BetterScroll.vue";
-
-import { ref, defineComponent } from "vue";
-
+import { ref } from "vue";
+import { useRequest } from "../hooks/useRequest.js";
+import { useRouter } from "vue-router";
+const router = useRouter();
 import {
   getHomePageData,
   getHomeBall,
@@ -623,65 +674,58 @@ import {
   getHotTopic,
 } from "../service";
 
-export default defineComponent({
-  components: { BetterScroll },
-  setup() {
-    const visible = ref<boolean>(false);
-    const userName = ref<string>("");
-    const showDrawer = () => {
-      visible.value = true;
-    };
-    // 自定义函数 --获取首页数据
-    const homepageData = ref({});
-    (async () => {
-      homepageData.value = (await getHomePageData()).data.data.blocks;
-      console.log("获取首页数据", homepageData.value);
-    })();
+const visible = ref<boolean>(false);
+const userName = ref<string>("");
+const showDrawer = () => {
+  visible.value = true;
+};
+// 自定义函数 --获取首页数据
+const homepageData = ref({});
+(async () => {
+  homepageData.value = (await getHomePageData()).data.data.blocks;
+  // console.log("获取首页数据", homepageData.value);
+})();
 
-    // 获取首页发现
-    const HomeBall = ref([]);
-    (async () => {
-      HomeBall.value = (await getHomeBall()).data.data;
-      // console.log(HomeBall.value);
-    })();
+// 获取首页发现
+const HomeBall = ref([]);
+(async () => {
+  HomeBall.value = (await getHomeBall()).data.data;
+  // console.log(HomeBall.value);
+})();
 
-    // 获取推荐歌单
-    const Personalized = ref([]);
-    (async () => {
-      Personalized.value = (await getPersonalized(6)).data.result;
-      // console.log(Personalized.value);
-    })();
-
-    // 新歌新碟\数字专辑
-    const AlbumList = ref([]);
-    (async () => {
-      AlbumList.value = (await getAlbumList(12)).data.products;
-      // console.log(AlbumList.value);
-    })();
-    // getHotTopic
-    const HotTopic = ref({});
-    (async () => {
-      HotTopic.value = await getHotTopic();
-      console.log(HotTopic.value);
-    })();
-    return {
-      //获取首页数据
-      homepageData,
-      // 获取首页发现
-      HomeBall,
-      // 获取推荐歌单
-      Personalized,
-      // 新歌新碟\数字专辑
-      AlbumList,
-
-      visible,
-      showDrawer,
-      userName,
-    };
+// 推荐歌单
+const { data: Personalized } = useRequest(() => getPersonalized(6), {
+  formatResult(response) {
+    return response.data.result;
   },
+  manual: false,
+  deps: [],
 });
+
+// 点击推荐歌单获取id
+const PersonalizedId = (id) => {
+  // 获取我点击的Personalized.id
+  console.log("Clicked ID", id);
+  // 带着id跳转到SingingListDetails页面
+  // router.push({ name: "SingingListDetails", params: { id } });
+};
+
+// 新歌新碟\数字专辑
+const AlbumList = ref([]);
+(async () => {
+  AlbumList.value = (await getAlbumList(12)).data.products;
+  // console.log(AlbumList.value);
+})();
+
+// getHotTopic
+// const HotTopic = ref({});
+// (async () => {
+//   HotTopic.value = await getHotTopic();
+//   console.log(HotTopic.value);
+// })();
 </script>
 
+<!-- Css -->
 <style>
 .ant-input {
   background-color: rgba(0, 0, 0, 0);

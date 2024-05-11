@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[#f4f4f4]">
+  <div class="bg-[#f4f4f4] h-[100vh]">
     <div class="w-[90vw] mx-auto overflow-hidden">
       <!-- 搜索 -->
       <div class="mt-[2vw] flex justify-between items-center">
@@ -23,7 +23,10 @@
         <div @click="Cloudsearchrun"><span>搜索</span></div>
       </div>
       <!-- 搜索数据 -->
-      <div v-if="searchMinu" class="w-[100vw] absolute bg-white h-[100vh]">
+      <div
+        v-if="searchMinu"
+        class="w-[100vw] absolute bg-white h-[100vh] left-0"
+      >
         <ul v-for="item in Cloudsearch" :key="item.id">
           <li class="my-[2vw] border-b flex items-center">
             <Icon icon="ph:magnifying-glass-thin" class="text-[4vw] ml-[1vw]" />
@@ -69,6 +72,9 @@
           <div class="pt-[2vw] border-b">
             {{ item.name }}
           </div>
+          <ul v-for="item in PlaylistDetail" :key="item.id">
+            <li>{{ item.name }}</li>
+          </ul>
         </div>
       </BetterScroll>
     </div>
@@ -84,7 +90,7 @@ import {
   getPlaylistDetail,
 } from "../service";
 import { useRequest } from "../hooks/useRequest.js";
-import { ref, watchEffect, watch } from "vue";
+import { ref, watchEffect, watch, onMounted } from "vue";
 
 // 搜索
 const searchMinu = ref("");
@@ -105,65 +111,31 @@ const { data: SearchHot } = useRequest(getSearchHot, {
   },
 });
 
-// // 排行
-// const { data: Toplist } = useRequest(getToplist, {
-//   formatResult(response) {
-//     // 取五个
-//     return response.data.list.slice(0, 5).map((id) => id);
-//   },
-// });
-
-// // 排行详情
-
-// const { data: PlaylistDetail } = useRequest(
-//   () =>
-//     getPlaylistDetail({
-//       id: "19723756",
-//     }),
-//   {
-//     formatResult(response) {
-//       return response.data.playlist.tracks.slice(0, 20);
-//     },
-//   }
-// );
-
 // 排行
 const { data: Toplist } = useRequest(getToplist, {
   formatResult(response) {
-    // 取前五个
-    return response.data.list.slice(0, 5).map((item) => item);
+    // 取五个
+    return response.data.list.slice(0, 5);
   },
 });
-
-// 用于存储排行详情的响应数据
-const playlistDetailData = ref([]);
-
-// 监听Toplist变化，当Toplist有数据时发起获取详情的请求
-watch(Toplist, async (newToplist) => {
-  if (newToplist && newToplist.length > 0) {
-    // 假设我们只对第一个排行感兴趣，获取其详情
-    const firstListId = newToplist[0].id;
-    const { data: PlaylistDetail } = await useRequest(
-      () => getPlaylistDetail({ id: firstListId }),
-      {
-        manual: true, // 因为我们手动控制执行时机，所以设置为manual模式
-        formatResult(response) {
-          return response.data.playlist.tracks.slice(0, 20);
-        },
-      }
-    ).run();
-
-    // 将获取到的详情数据存入playlistDetailData
-    playlistDetailData.value = PlaylistDetail;
+// 排行详情
+let selectedId = ref(Toplist.value?.map?.id);
+// 获取排行里的id 传给id
+const { data: PlaylistDetail } = useRequest(
+  () =>
+    getPlaylistDetail({
+      // 获取排行当中id
+      id: "19723756",
+    }),
+  {
+    formatResult(response) {
+      return response.data.playlist.tracks.slice(0, 20);
+    },
   }
-});
-
-onMounted(() => {
-  // 页面挂载后开始获取Toplist数据
-  Toplist.run();
-});
+);
 
 watchEffect(() => {
+  console.log(selectedId.value);
   // // 搜索
   // console.log(Cloudsearch.value);
   // // 热搜列表(简略)

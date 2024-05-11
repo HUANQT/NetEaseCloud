@@ -1,7 +1,7 @@
 <template>
   <div ref="wrapper" :class="[{ flex: option.scrollX }, 'overflow-hidden']">
     <div :class="{ 'flex flex-1': option.scrollX }">
-      <slot />
+      <slot></slot>
     </div>
   </div>
 </template>
