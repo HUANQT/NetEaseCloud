@@ -29,8 +29,11 @@
                 />
               </a-avatar>
             </div>
-            <span class="dark:text-[#f0f0f0] text-[#383838] text-[3.5vw]">
-              <router-link to="/login">立刻登录</router-link>
+            <span
+              @click="router.push('/login')"
+              class="dark:text-[#f0f0f0] text-[#383838] text-[3.5vw]"
+            >
+              立刻登录
             </span>
             <Icon icon="ep:arrow-right-bold" />
           </div>
@@ -525,8 +528,7 @@
       </div>
       <!-- 内容 -->
       <BetterScroll
-        class="overflow-hidden mt-[6vw]"
-        :option="{ scrollY: false, scrollX: true }"
+        :option="{ scrollX: true, click: true }"
         :dep="Personalized"
       >
         <div
@@ -671,7 +673,6 @@ import {
   getHomeBall,
   getPersonalized,
   getAlbumList,
-  getHotTopic,
 } from "../service";
 
 const visible = ref<boolean>(false);
@@ -687,11 +688,13 @@ const homepageData = ref({});
 })();
 
 // 获取首页发现
-const HomeBall = ref([]);
-(async () => {
-  HomeBall.value = (await getHomeBall()).data.data;
-  // console.log(HomeBall.value);
-})();
+const { data: HomeBall } = useRequest(getHomeBall, {
+  formatResult(response) {
+    return response.data.data;
+  },
+  manual: false,
+  deps: [],
+});
 
 // 推荐歌单
 const { data: Personalized } = useRequest(() => getPersonalized(6), {
@@ -701,28 +704,20 @@ const { data: Personalized } = useRequest(() => getPersonalized(6), {
   manual: false,
   deps: [],
 });
-
-// 点击推荐歌单获取id
-const PersonalizedId = (id) => {
-  // 获取我点击的Personalized.id
-  console.log("Clicked ID", id);
-  // 带着id跳转到SingingListDetails页面
-  // router.push({ name: "SingingListDetails", params: { id } });
+// 获取点击推荐歌单id
+const PersonalizedId = (DationId) => {
+  console.log("推荐歌单id", DationId);
+  router.push({ name: "singingListDetails", params: { DationId } });
 };
 
 // 新歌新碟\数字专辑
-const AlbumList = ref([]);
-(async () => {
-  AlbumList.value = (await getAlbumList(12)).data.products;
-  // console.log(AlbumList.value);
-})();
-
-// getHotTopic
-// const HotTopic = ref({});
-// (async () => {
-//   HotTopic.value = await getHotTopic();
-//   console.log(HotTopic.value);
-// })();
+const { data: AlbumList } = useRequest(() => getAlbumList(12), {
+  formatResult(response) {
+    return response.data.products;
+  },
+  manual: false,
+  deps: [],
+});
 </script>
 
 <!-- Css -->

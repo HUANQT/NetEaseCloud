@@ -1,20 +1,6 @@
 // vue2 对vue是全量引用 不能做到按需引用
 // vue3 api模块化 兼容所有vue2的语法
 import { createApp } from "vue";
-
-import {
-  Field,
-  Tab,
-  Tabs,
-  Swipe,
-  SwipeItem,
-  Image,
-  DropdownMenu,
-  DropdownItem,
-} from "vant";
-
-import "vant/lib/index.css";
-
 import "./style.css";
 import App from "./App.vue";
 import router from "./router";
@@ -30,15 +16,4 @@ app.component("Icon", Icon);
 app.component("Button", Button);
 app.component("Input", Input);
 
-app
-  .use(DropdownMenu)
-  .use(DropdownItem)
-  .use(Field)
-  .use(Tab)
-  .use(Tabs)
-  .use(Antd)
-  .use(router)
-  .use(Swipe)
-  .use(SwipeItem)
-  .use(Image)
-  .mount("#app");
+app.use(Antd).use(router).mount("#app");

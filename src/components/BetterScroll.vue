@@ -1,12 +1,13 @@
 <template>
   <div ref="wrapper" :class="[{ flex: option.scrollX }, 'overflow-hidden']">
     <div :class="{ 'flex flex-1': option.scrollX }">
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>
 <script>
-import BetterScroll from "better-scroll";
+import BetterScroll from "@better-scroll/core";
+import { onMounted, ref, watch, nextTick } from "vue";
 
 export default {
   props: {
@@ -19,6 +20,17 @@ export default {
       }),
     },
   },
+  // setup(props) {
+  //   const wrapper = ref(null);
+  //   onMounted(() => {
+  //     const bs = BetterScroll(wrapper.value, props.option);
+  //     watch(
+  //       () => props.dep,
+  //       () => nextTick(bs.refresh)
+  //     );
+  //   });
+  //   return { wrapper };
+  // },
   mounted() {
     const bs = BetterScroll(this.$refs.wrapper, this.option);
     // this.$watch的第一个参数
@@ -31,4 +43,3 @@ export default {
   },
 };
 </script>
-<style></style>

@@ -105,7 +105,7 @@ const { data: MvAll, run: fnMvData } = useRequest(
 );
 
 // 点击事件
-const mvsingerId = (id: string) => {
+const mvsingerId = (id) => {
   // 获取我点击的MvAll.id
   console.log("Clicked ID", id);
   // 带着id跳转到videoPlayerView页面

@@ -113,8 +113,8 @@
 import { useRequest } from "@/hooks/useRequest";
 import { ref, watchEffect } from "vue";
 import { getMvUrl, getDetailInfo, getDetail } from "@/service";
-import { useRoute } from "vue-router";
 
+import { useRoute } from "vue-router";
 const route = useRoute();
 // 获取我的上页面的id
 const videoId = route.params.id;
@@ -167,6 +167,7 @@ const { data: Detail } = useRequest(
 );
 
 watchEffect(() => {
+  console.log(route.params);
   // console.log(MvUrl.value);
   // console.log(DetailInfo.value);
   // console.log(Detail.value);
