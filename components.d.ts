@@ -12,6 +12,8 @@ declare module 'vue' {
     Input: typeof import('./src/components/Input.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    VanCollapse: typeof import('vant/es')['Collapse']
+    VanCollapseItem: typeof import('vant/es')['CollapseItem']
     VanField: typeof import('vant/es')['Field']
     VanImage: typeof import('vant/es')['Image']
     VanSwipe: typeof import('vant/es')['Swipe']

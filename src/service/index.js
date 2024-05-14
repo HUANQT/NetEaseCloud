@@ -5,10 +5,30 @@ export const getLoginQrKey = () => request.get("/login/qr/key");
 // 二维码图片
 export const getLoginQrCreate = (params) =>
   request.get(`/login/qr/create`, { params });
-// 登录检测 /login/qr/check
-export const getLoginQrCheck = (key) =>
-  request.get(`/login/qr/check?key=${key}`);
+// 登录检测
+export const getLoginQrCheck = (params) =>
+  request.get("/login/qr/check", { params });
 
+// 获取账号信息
+export const getUserAccount = (params) =>
+  request.get("/login/status", { params });
+// 用户详情
+export const getUserDetail = (params) =>
+  request.get("/user/detail", { params });
+// 关注列表
+export const getSuerFollows = (params) =>
+  request.get("/user/follows", { params });
+// 粉丝列表
+export const getSuerFollowds = (params) =>
+  request.get("/user/followeds", { params });
+//用户等级
+export const getUserLevel = (params) => request.get("/user/level", { params });
+//获取用户信息 , 歌单，收藏，mv, dj 数量
+export const getUserSubcount = (params) =>
+  request.get("/user/subcount", { params });
+// 歌单
+export const getUserPlaylist = (params) =>
+  request.get("/user/playlist", { params });
 //获取首页数据
 export const getHomePageData = () => request.get("/homepage/block/page");
 

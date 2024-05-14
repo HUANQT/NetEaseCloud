@@ -5,6 +5,7 @@ import Community from "../views/community.vue";
 import MyUser from "../views/myUser.vue";
 import VideoPlayerView from "../views/videoPlayerView.vue";
 import SingingListDetails from "../views/singingListDetails.vue";
+import Edit from "../views/edit.vue";
 // import Follow from "../views/follow.vue";
 // import RankingList from "../views/rankingList.vue";
 
@@ -23,5 +24,10 @@ export default [
     path: "/singingListDetails/:DationId",
     name: "singingListDetails",
     component: SingingListDetails,
+  },
+  {
+    path: "/edit",
+    name: "edit",
+    component: Edit,
   },
 ];
