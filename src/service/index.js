@@ -26,9 +26,14 @@ export const getUserLevel = (params) => request.get("/user/level", { params });
 //获取用户信息 , 歌单，收藏，mv, dj 数量
 export const getUserSubcount = (params) =>
   request.get("/user/subcount", { params });
+
 // 歌单
 export const getUserPlaylist = (params) =>
   request.get("/user/playlist", { params });
+// 歌曲详情
+export const getSongDetail = (params) =>
+  request.get("/song/detail", { params });
+
 //获取首页数据
 export const getHomePageData = () => request.get("/homepage/block/page");
 
@@ -40,7 +45,7 @@ export const getPersonalized = (limit) =>
   request.get("/personalized", { params: { limit } });
 // 歌单详情
 export const getPlaylistDetail = (params) =>
-  request.get("/playlist/detail", params);
+  request.get("/playlist/detail", { params });
 //
 export const getPlaylistTrackAll = (params) =>
   request.get("/playlist/track/all", { params });

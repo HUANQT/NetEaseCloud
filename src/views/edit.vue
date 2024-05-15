@@ -29,7 +29,7 @@
         <div class="dark:bg-[#212121] w-[100vw] h-[2vw] bg-[#f1f1f1]"></div>
         <div class="van-cell-group van-hairline--top-bottom dark:bg-[#2C2C2C]">
           <div
-            class="van-cell van-cell--large dark:bg-[#2C2C2C] dark:text-[#EAEAEA] text-[#333333] text-[3.6vw] font-[800] flex items-center w-[96vw] ml-[4vw] p-0 h-[14vw] pr-[2vw]"
+            class="van-cell van-cell--large dark:bg-[#2C2C2C] dark:text-[#EAEAEA] text-[#333333] text-[3.6vw] font-[800] flex items-center w-[96vw] p-0 h-[14vw] pr-[2vw]"
           >
             <div class="van-cell__title"><span>头像</span></div>
             <div class="van-cell__value">
@@ -41,19 +41,19 @@
             </div>
           </div>
           <div
-            class="van-cell van-cell--large dark:bg-[#2C2C2C] dark:text-[#FFFFFF] text-[#333333] text-[3.6vw] font-[800] flex items-center w-[96vw] ml-[4vw] p-0 h-[14vw] pr-[2vw]"
+            class="van-cell van-cell--large dark:bg-[#2C2C2C] dark:text-[#FFFFFF] text-[#333333] text-[3.6vw] font-[800] flex items-center w-[96vw] p-0 h-[14vw] pr-[2vw]"
           >
             <div class="van-cell__title"><span>昵称</span></div>
             <div class="van-cell__value"><span>道远xx</span></div>
           </div>
           <div
-            class="van-cell van-cell--large dark:text-[#FFFFFF] dark:bg-[#2C2C2C] text-[#333333] text-[3.6vw] font-[800] flex items-center w-[96vw] ml-[4vw] p-0 h-[14vw] pr-[2vw]"
+            class="van-cell van-cell--large dark:text-[#FFFFFF] dark:bg-[#2C2C2C] text-[#333333] text-[3.6vw] font-[800] flex items-center w-[96vw] p-0 h-[14vw] pr-[2vw]"
           >
             <div class="van-cell__title"><span>性别</span></div>
             <div class="van-cell__value"><span>男</span></div>
           </div>
           <div
-            class="van-cell van-cell--large dark:bg-[#2C2C2C] dark:text-[#FFFFFF] text-[#333333] text-[3.6vw] font-[800] flex items-center w-[96vw] ml-[4vw] p-0 h-[14vw] pr-[2vw]"
+            class="van-cell van-cell--large dark:bg-[#2C2C2C] dark:text-[#FFFFFF] text-[#333333] text-[3.6vw] font-[800] flex items-center w-[96vw] p-0 h-[14vw] pr-[2vw]"
           >
             <div class="van-cell__title"><span>二维码</span></div>
             <div class="van-cell__value">
@@ -78,31 +78,31 @@
         <div class="dark:bg-[#212121] w-[100vw] h-[2vw] bg-[#f1f1f1]"></div>
         <div class="van-cell-group van-hairline--top-bottom dark:bg-[#2C2C2C]">
           <div
-            class="van-cell van-cell--large dark:bg-[#2C2C2C] dark:text-[#FFFFFF] text-[#333333] text-[3.6vw] font-[800] flex items-center w-[96vw] ml-[4vw] p-0 h-[14vw] pr-[2vw]"
+            class="van-cell van-cell--large dark:bg-[#2C2C2C] dark:text-[#FFFFFF] text-[#333333] text-[3.6vw] font-[800] flex items-center w-[96vw] p-0 h-[14vw] pr-[2vw]"
           >
             <div class="van-cell__title"><span>生日</span></div>
             <div class="van-cell__value"><span>1900-1-1</span></div>
           </div>
           <div
-            class="van-cell van-cell--large dark:bg-[#2C2C2C] dark:text-[#FFFFFF] text-[#333333] text-[3.6vw] font-[800] flex items-center w-[96vw] ml-[4vw] p-0 h-[14vw] pr-[2vw]"
+            class="van-cell van-cell--large dark:bg-[#2C2C2C] dark:text-[#FFFFFF] text-[#333333] text-[3.6vw] font-[800] flex items-center w-[96vw] p-0 h-[14vw] pr-[2vw]"
           >
             <div class="van-cell__title"><span>地区</span></div>
             <div class="van-cell__value"><span>湖北省宜昌市</span></div>
           </div>
           <div
-            class="van-cell van-cell--large dark:bg-[#2C2C2C] dark:text-[#FFFFFF] text-[#333333] text-[3.6vw] font-[800] flex items-center w-[96vw] ml-[4vw] p-0 h-[14vw] pr-[2vw]"
+            class="van-cell van-cell--large dark:bg-[#2C2C2C] dark:text-[#FFFFFF] text-[#333333] text-[3.6vw] font-[800] flex items-center w-[96vw] p-0 h-[14vw] pr-[2vw]"
           >
             <div class="van-cell__title"><span>大学</span></div>
             <div class="van-cell__value"><span>未填写</span></div>
           </div>
           <div
-            class="van-cell van-cell--large dark:bg-[#2C2C2C] dark:text-[#FFFFFF] text-[#333333] text-[3.6vw] font-[800] flex items-center w-[96vw] ml-[4vw] p-0 h-[14vw] pr-[2vw]"
+            class="van-cell van-cell--large dark:bg-[#2C2C2C] dark:text-[#FFFFFF] text-[#333333] text-[3.6vw] font-[800] flex items-center w-[96vw] p-0 h-[14vw] pr-[2vw]"
           >
             <div class="van-cell__title"><span>音乐标签</span></div>
             <div class="van-cell__value"><span>选择标签</span></div>
           </div>
           <div
-            class="van-cell van-cell--large dark:bg-[#2C2C2C] dark:text-[#FFFFFF] text-[#333333] text-[3.6vw] font-[800] flex items-center w-[96vw] ml-[4vw] p-0 h-[14vw] pr-[2vw]"
+            class="van-cell van-cell--large dark:bg-[#2C2C2C] dark:text-[#FFFFFF] text-[#333333] text-[3.6vw] font-[800] flex items-center w-[96vw] p-0 h-[14vw] pr-[2vw]"
           >
             <div class="van-cell__title"><span>简介</span></div>
             <div class="van-cell__value"><span>还没有简介</span></div>
@@ -111,12 +111,12 @@
         <div class="dark:bg-[#212121] w-[100vw] h-[2vw] bg-[#f1f1f1]"></div>
         <div class="van-cell-group van-hairline--top-bottom dark:bg-[#2C2C2C]">
           <div
-            class="van-cell van-cell--large dark:bg-[#2C2C2C] dark:text-[#FFFFFF] text-[#333333] text-[3.6vw] font-[800] flex items-center w-[96vw] ml-[4vw] p-0 h-[14vw] pr-[2vw]"
+            class="van-cell van-cell--large dark:bg-[#2C2C2C] dark:text-[#FFFFFF] text-[#333333] text-[3.6vw] font-[800] flex items-center w-[96vw] p-0 h-[14vw] pr-[2vw]"
           >
             <div class="van-cell__title"><span>个人主页隐私设置</span></div>
           </div>
           <div
-            class="van-cell van-cell--large dark:bg-[#2C2C2C] dark:text-[#FFFFFF] text-[#333333] text-[3.6vw] font-[800] flex items-center w-[96vw] ml-[4vw] p-0 h-[14vw] pr-[2vw]"
+            class="van-cell van-cell--large dark:bg-[#2C2C2C] dark:text-[#FFFFFF] text-[#333333] text-[3.6vw] font-[800] flex items-center w-[96vw] p-0 h-[14vw] pr-[2vw]"
           >
             <div class="van-cell__title"><span>主页模块顺序设置</span></div>
           </div>
@@ -124,7 +124,7 @@
         <div class="dark:bg-[#212121] w-[100vw] h-[2vw] bg-[#f1f1f1]"></div>
         <div class="van-cell-group van-hairline--top-bottom dark:bg-[#2C2C2C]">
           <div
-            class="van-cell van-cell--large dark:bg-[#2C2C2C] dark:text-[#FFFFFF] text-[#333333] text-[3.6vw] font-[800] flex items-center w-[96vw] ml-[4vw] p-0 h-[14vw] pr-[2vw]"
+            class="van-cell van-cell--large dark:bg-[#2C2C2C] dark:text-[#FFFFFF] text-[#333333] text-[3.6vw] font-[800] flex items-center w-[96vw] p-0 h-[14vw] pr-[2vw]"
           >
             <div class="van-cell__title"><span>账号绑定和设置</span></div>
           </div>

@@ -17,6 +17,7 @@
     "unplugin-auto-import": "^0.17.6",
     "vant": "^4.9.0",
     "vue": "^3.4.21",
+    "vue-request": "^2.0.4",
     "vue-router": "^4.3.2"
   },
   "devDependencies": {

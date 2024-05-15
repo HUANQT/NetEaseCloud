@@ -4,12 +4,24 @@
     <div class="relative bg-[#F1F1F1]">
       <img :src="UserAccount?.backgroundUrl" class="h-[35vh] w-[100vw]" />
       <!-- 导航 -->
-      <div class="absolute top-[4vw] left-[5vw]">
+      <div class="fixed pt-[4vw] top-[0] w-[100vw] bg-[rgba(0,0,0,0.6)] z-[10]">
         <div class="flex justify-between w-[90vw] mx-auto">
           <!-- 返回 -->
-          <div>返回</div>
+          <div @click="router.push('/')">
+            <Icon
+              icon="bitcoin-icons:arrow-left-filled"
+              style="color: white"
+              class="text-[6vw]"
+            />
+          </div>
           <!-- 更多 -->
-          <div>更多</div>
+          <div>
+            <Icon
+              icon="ri:more-2-fill"
+              style="color: white"
+              class="text-[6vw]"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -61,22 +73,34 @@
           <div class="mt-[1vw] w-[90vw] mx-auto bg-white rounded-[5vw]">
             <div class="pl-[4vw] pt-[3vw]">音乐品味</div>
             <div class="flex justify-around py-[2vw]">
-              <div class="bg-cyan-400 w-[25vw] rounded-[5vw]">
+              <div
+                class="w-[27vw] h-[28vw] rounded-[15px] bg-gradient-to-b from-[#ffdfd3] to-[#FEFEFB] border-[1px] border-[#F6F4F0] relative"
+              >
                 <div class="pl-[2vw] pt-[1vw]">
                   <div class="text-[2.5vw] text-[#ccc]">我喜欢的</div>
-                  <div class="text-[#5A565D]">首</div>
+                  <div class="text-[3.5vw] text-[#5A565D]">
+                    {{ miunFalseArray?.[0]?.trackCount }}首
+                  </div>
                 </div>
               </div>
-              <div class="bg-cyan-400 w-[25vw] rounded-[5vw]">
+              <div
+                class="w-[27vw] h-[28vw] rounded-[15px] bg-gradient-to-b from-[#f9ebcf] to-[#FEFEFB] border-[1px] border-[#F6F4F0] relative"
+              >
                 <div class="pl-[2vw] pt-[1vw]">
                   <div class="text-[2.5vw] text-[#ccc]">累计听歌</div>
-                  <div class="text-[#5A565D]">首</div>
+                  <div class="text-[3.5vw] text-[#5A565D]">
+                    {{ miunFalseArray?.[0]?.playCount }}首
+                  </div>
                 </div>
               </div>
-              <div class="bg-cyan-400 w-[25vw] rounded-[5vw]">
+              <div
+                class="w-[27vw] h-[28vw] rounded-[15px] bg-gradient-to-b from-[#dbeff9] to-[#FEFEFB] border-[1px] border-[#F6F4F0] relative pr-[1.9vw]"
+              >
                 <div class="pl-[2vw] pt-[1vw]">
                   <div class="text-[2.5vw] text-[#ccc]">本周关键词</div>
-                  <div class="text-[#5A565D]">属于你的音乐档案</div>
+                  <div class="text-[3.5vw] text-[#5A565D]">
+                    属于你的音乐档案
+                  </div>
                 </div>
               </div>
             </div>
@@ -86,13 +110,13 @@
             <div class="pl-[4vw] pt-[3vw]">
               <span>创建歌单</span>
               <span class="text-[#ccc] text-[3vw] ml-[1vw]"
-                >({{ UserPlaylist?.length }}个)</span
+                >({{ miunFalseArray?.length }}个)</span
               >
             </div>
             <div class="pb-[4vw]">
               <ul
                 class="px-[4vw] pb-[4vw]"
-                v-for="itme in UserPlaylist"
+                v-for="itme in miunFalseArray"
                 :key="itme.id"
               >
                 <li class="flex mb-[1.5vw]">
@@ -121,7 +145,7 @@
               </ul>
             </div>
           </div>
-          <!-- 添加的歌单 -->
+          <!-- 添加的歌单  miunFalseArray-->
           <div class="mt-[4vw] w-[90vw] mx-auto bg-white rounded-[5vw]">
             <div
               class="dark:bg-[#2C2C2C] w-[100%] bg-[#fff] rounded-[15px] pt-[5vw] mb-[3.7vw]"
@@ -131,10 +155,40 @@
               >
                 收藏的歌单<span
                   class="dark:text-[#A1A1A1] text-[#9599a3] text-[2.7vw] ml-[1.6vw] font-[200]"
-                  >(0个)</span
+                  >({{ miunTrueArray?.length }}个)</span
                 >
               </p>
-              <ul class="px-[4vw] pb-[4vw]"></ul>
+              <div class="pb-[4vw]">
+                <ul
+                  class="px-[4vw] pb-[4vw]"
+                  v-for="itme in miunTrueArray"
+                  :key="itme.id"
+                >
+                  <li class="flex mb-[1.5vw]">
+                    <div class="relative pt-[0.6vw] mr-[2.6vw]">
+                      <img
+                        :src="itme?.coverImgUrl"
+                        class="w-[12vw] h-[12vw] rounded-[10px] bg-black z-[2] relative"
+                      />
+                      <div
+                        class="dark:bg-[#434343] w-[9vw] h-[4vw] bg-[#ddd] bg-opacity-50 absolute top-[0vw] left-1/2 -translate-x-1/2 rounded-[6px] z-[1]"
+                      ></div>
+                    </div>
+                    <div class="flex flex-wrap items-center flex-1 py-[1vw]">
+                      <p
+                        class="dark:text-[#E6E6E6] w-[100%] text-[3.8vw] text-[#3f4659] line-clamp-1"
+                      >
+                        {{ itme?.name }}
+                      </p>
+                      <p
+                        class="dark:text-[#B7B7B7] w-[100%] text-[2.8vw] text-[#aaadb5] line-clamp-1"
+                      >
+                        {{ itme?.trackCount }}，播放{{ itme?.playCount }}次
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
               <div></div>
             </div>
           </div>
@@ -197,7 +251,7 @@
       </van-tabs>
     </div>
     <!-- 底部导航 -->
-    <div class="fixed bottom-0">
+    <div class="fixed bottom-0 z-[10]">
       <div class="w-[100vw] h-[5vh] bg-white flex justify-around">
         <div class="mt-[2vw]">
           <router-link to="/" :class="{ 'text-red-500': $route.path === '/' }">
@@ -264,6 +318,8 @@ import {
 import { ref, watchEffect, onMounted } from "vue";
 const cookie = ref(null);
 const activeNames = ref(["1"]);
+const falget = ref(true);
+
 // 用户信息
 const { data: UserAccount, run: UserAccountrun } = useRequest(
   () => getUserAccount({ cookie: cookie?.value }),
@@ -339,28 +395,48 @@ const { data: UserPlaylist, run: UserPlaylistrun } = useRequest(
   }
 );
 
+// 歌单
+// true
+const miunTrueArray = ref([]);
+// false
+const miunFalseArray = ref([]);
+// 分类
+const arr = () => {
+  if (UserPlaylist?.value) {
+    for (const item of UserPlaylist?.value) {
+      if (item.subscribed) {
+        miunTrueArray.value.push(item);
+      } else {
+        miunFalseArray.value.push(item);
+      }
+    }
+  }
+};
+
 onMounted(() => {
   // cookie
   cookie.value = localStorage.getItem("cookie");
   UserAccountrun();
 });
 
-const falget = ref(true);
 watchEffect(() => {
   // console.log("用户信息", UserAccount.value);
   // console.log(UserAccount?.value);
+  // console.log("用户等级", UserLevel?.value);
+  // console.log("关注", SuerFollows?.value);
+  // console.log("粉丝", SuerFollowds?.value);
+  // console.log("用户详情", UserDetail?.value);
+  console.log("创建的歌单", UserPlaylist?.value);
+  // 执行
+  arr();
   if (UserAccount?.value?.userId && falget.value) {
     UserLevelrun();
     SuerFollowsrun();
     SuerFollowdsrun();
     UserDetailrun();
     UserPlaylistrun();
+
     falget.value = false;
   }
-  // console.log("用户等级", UserLevel?.value);
-  // console.log("关注", SuerFollows?.value);
-  // console.log("粉丝", SuerFollowds?.value);
-  console.log("用户详情", UserDetail?.value);
-  console.log("创建的歌单", UserPlaylist?.value);
 });
 </script>

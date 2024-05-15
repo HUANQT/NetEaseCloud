@@ -6,6 +6,8 @@ import MyUser from "../views/myUser.vue";
 import VideoPlayerView from "../views/videoPlayerView.vue";
 import SingingListDetails from "../views/singingListDetails.vue";
 import Edit from "../views/edit.vue";
+import PlayerHome from "@/views/playerHome.vue";
+
 // import Follow from "../views/follow.vue";
 // import RankingList from "../views/rankingList.vue";
 
@@ -29,5 +31,10 @@ export default [
     path: "/edit",
     name: "edit",
     component: Edit,
+  },
+  {
+    path: "/playerHome/:DationId/:songId",
+    name: "playerHome",
+    component: PlayerHome,
   },
 ];

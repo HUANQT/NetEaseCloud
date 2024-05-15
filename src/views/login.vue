@@ -1,18 +1,44 @@
 <template>
-  <div>
-    key: {{ LoginQrKey }} code:{{ LoginQrCheck?.code }}
-    <img class="w-[40vw] h-[40vw]" :src="LoginQrCreate?.qrimg" />
+  <div class="bg-[#FDFBFC] h-[100vh] pb-[12vw]">
+    <div class="flex h-[19vw] items-center justify-between px-[5.5vw]">
+      <Icon icon="ep:arrow-left-bold" style="color: #000" @click="asb" />
+      <div class="text-[4vw] text-[#696969]">游客登录</div>
+    </div>
+    <img
+      src="https://admirable-jalebi-ce44af.netlify.app/static/logo.fill.svg"
+      alt=""
+      class="w-[38vw] mx-auto mt-[7vw] mb-[9vw]"
+    />
+    <div v-if="confirmLogin">
+      <h1 class="h-[17vw] leading-[17vw] text-center text-[4vw] text-[#04090C]">
+        扫描成功
+      </h1>
+      <p class="text-[#0F1619] text-[3.4vw] text-center">请在手机上确认登录</p>
+    </div>
+    <div class="relative" v-else>
+      <img
+        class="w-[40vw] h-[40vw] m-auto relative z-[1]"
+        :src="LoginQrCreate?.qrimg"
+      />
+      <div class="text-[3vw] text-[#100A09] text-center mt-[10vw]">
+        使用
+        <span class="text-[#2C6AA1] mx-[1.5vw]"> 网易云音乐APP </span>
+        扫码登录
+      </div>
+    </div>
+    <div class="fixed bottom-0"></div>
   </div>
-  <!--  -->
   <div v-if="checkglaft" @click="refresh">点击刷新</div>
 </template>
 <script setup>
 import { useRequest } from "@/hooks/useRequest.js";
-import router from "@/router";
+import { useRouter } from "vue-router";
 import { getLoginQrKey, getLoginQrCreate, getLoginQrCheck } from "@/service";
 import { ref, watchEffect, onMounted, onUnmounted } from "vue";
 // 判断
+const router = useRouter();
 const glaft = ref(true);
+const confirmLogin = ref(false);
 const checkglaft = ref(false);
 const LoginQrCheckSet = ref(null);
 // 时间戳
@@ -79,7 +105,7 @@ watchEffect(() => {
 
   // 手机确认
   if (LoginQrCheck?.value?.code === 802) {
-    console.log("请确认");
+    confirmLogin.value = true;
   } else if (LoginQrCheck?.value?.code === 803) {
     // 缓存cookie
     window.localStorage.setItem("cookie", LoginQrCheck?.value?.cookie);
@@ -90,25 +116,15 @@ watchEffect(() => {
     clearInterval(LoginQrCheckSet.value);
     LoginQrCheckSet.value = null;
     checkglaft.value = true;
-    refresh = () => {
-      // 清除定时器
-      clearInterval(LoginQrCheckSet.value);
-      LoginQrCheckSet.value = null;
-      // 重新请求key
-      keyrun();
-      glaft.value = true;
-      checkglaft.value = false;
-    };
+    // 点击事件
   }
-  console.log(LoginQrCheck);
+  console.log(LoginQrCheck?.value?.code);
 });
-onUnmounted(() => {
-  // 清除定时器
-  if (loginCheckInterval) {
-    clearInterval(loginCheckInterval);
-  }
 
-  // 可能还有其他需要清理的资源，比如取消未完成的网络请求等
-  // ...
-});
+const asb = () => {
+  // 清除定时器
+  clearInterval(LoginQrCheckSet.value);
+  LoginQrCheckSet.value = null;
+  router.push({ path: "/" });
+};
 </script>
