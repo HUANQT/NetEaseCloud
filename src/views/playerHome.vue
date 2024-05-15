@@ -1,5 +1,6 @@
 <template>
-  <div class="bg-[rgba(0,0,0,.6)]">
+  <div class="bg-[rgba(0,0,0,.6)] flex flex-col justify-between h-[100vh]">
+    <!-- 导航 -->
     <div class="h-[15vw] w-[100vw] flex items-center px-[4vw] justify-between">
       <Icon
         icon="mingcute:down-fill"
@@ -21,6 +22,7 @@
       </div>
       <Icon icon="tdesign:share" style="color: white" class="text-[6vw]" />
     </div>
+    <!-- 音盘和歌词 -->
     <div class="relative top-[2%] w-[100vw] h-[120vw]">
       <div
         class="absolute top-[10%] left-[50%] z-[10] rotated w-[30vw] h-[40vw]"
@@ -40,6 +42,73 @@
             alt=""
             class="absolute top-0 w-[80vw] h-[80vw]"
           />
+        </div>
+      </div>
+    </div>
+    <!-- 底部 -->
+    <div class="flex flex-wrap content-end pb-[10vh]">
+      <div class="w-[100vw] mt-[5vw] flex justify-evenly items-center"></div>
+      <div class="h-[8vw] w-[100vw] flex items-center px-[5vw] mt-[3vw]">
+        <div class="text-[#fff] text-[1.6vw] scale-[0.8] opacity-80">00:10</div>
+        <div
+          class="flex-1 mx-[2.5vw] vue-slider vue-slider-ltr"
+          style="padding: 7px 0px; width: auto; height: 4px"
+        >
+          <div class="vue-slider-rail">
+            <div
+              class="vue-slider-process"
+              style="
+                height: 100%;
+                top: 0px;
+                left: 0%;
+                transition-property: width, left;
+                transition-duration: 0s;
+                width: 4.34607%;
+              "
+            ></div>
+            <div
+              aria-valuetext="10.27411"
+              class="vue-slider-dot"
+              role="slider"
+              aria-valuenow="10.27411"
+              aria-valuemin="0"
+              aria-valuemax="236.4"
+              aria-orientation="horizontal"
+              tabindex="0"
+              style="
+                width: 14px;
+                height: 14px;
+                transform: translate(-50%, -50%);
+                top: 50%;
+                transition: left 0s ease 0s;
+                left: 4.34607%;
+              "
+            >
+              <div class="vue-slider-dot-handle"></div>
+            </div>
+          </div>
+        </div>
+        <div class="text-[#fff] text-[1.6vw] scale-[0.8] opacity-50">03:56</div>
+      </div>
+      <div class="h-[12.3vw] flex w-[100vw] items-center justify-evenly">
+        <div
+          class="w-[12vw] h-[12vw] rounded-[50%] bg-[#fff] flex items-center justify-center"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            aria-hidden="true"
+            role="img"
+            width="20px"
+            height="20px"
+            viewBox="0 0 256 256"
+            class="iconify iconify--ph"
+          >
+            <path
+              fill="currentColor"
+              d="M240 128a15.74 15.74 0 0 1-7.6 13.51L88.32 229.65a16 16 0 0 1-16.2.3A15.86 15.86 0 0 1 64 216.13V39.87a15.86 15.86 0 0 1 8.12-13.82a16 16 0 0 1 16.2.3l144.08 88.14A15.74 15.74 0 0 1 240 128"
+            ></path>
+          </svg>
         </div>
       </div>
     </div>
